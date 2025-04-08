@@ -1,0 +1,38 @@
+﻿@model Example.ViewModel.StudentWithBranchListViewModel
+
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div style="background-color: green">
+    <h3>Student Information</h3>
+    <p><strong>Name:</strong> @Model.StdName</p>
+
+    @if (!string.IsNullOrEmpty(Model.StdImage))
+    {
+        <p><strong>Image: </strong></p>
+        <img src="@Model.StdImage" alt="Student Image" style="max-width: 200px;" />
+    }
+
+    <p><strong>Message:</strong> @Model.Message</p>
+    <p><strong>Temp:</strong> @Model.Temp</p>
+</div>
+
+<div>
+    <h3>Branches</h3>
+    @if (Model.Branches != null && Model.Branches.Any())
+    {
+        <ul>
+            @foreach (var branch in Model.Branches)
+            {
+                <li>@branch</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No branches available.</p>
+    }
+</div>

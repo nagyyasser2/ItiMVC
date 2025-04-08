@@ -1,0 +1,17 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "details";
+}
+
+<h1>Details</h1>
+
+@Model.Name
+
+
+<select>
+    @foreach(var item in (List<string>)ViewData["Branches"])
+    {
+        <option>@item</option>
+    }
+</select>
