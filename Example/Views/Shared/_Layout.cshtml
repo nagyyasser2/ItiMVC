@@ -29,9 +29,23 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dept" asp-action="Index">Department</a>
                         </li>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Details">StudentDetails</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register/Login</a>
                         </li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item d-flex align-items-center">
+                                <form asp-area="" asp-controller="Account" asp-action="SignOut" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="nav-link btn btn-link text-dark p-0" style="background: none; border: none;">
+                                        Sign Out
+                                    </button>
+                                </form>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -54,3 +68,10 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html> 
+
+<style>
+    .nav-link.btn-link:hover {
+        text-decoration: underline;
+    }
+
+</style>

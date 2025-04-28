@@ -1,6 +1,7 @@
 ﻿using Example.Models;
 using Example.Repository;
 using Example.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Example.Controllers
@@ -14,7 +15,7 @@ namespace Example.Controllers
             _departmentRepository = departmentRepository;
         }
 
-        // GET: Department index page with existing departments
+        [Authorize]
         public IActionResult Index()
         {
             var model = new DepartmentViewModel
@@ -26,7 +27,6 @@ namespace Example.Controllers
             return View("Index", model);
         }
 
-        // POST: Save new or updated department
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult SaveDepartment(DepartmentViewModel viewModel)
@@ -56,7 +56,6 @@ namespace Example.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: Delete a department
         [HttpPost]
         public IActionResult Delete(int id)
         {

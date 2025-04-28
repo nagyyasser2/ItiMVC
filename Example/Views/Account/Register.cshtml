@@ -1,0 +1,65 @@
+﻿@model Example.ViewModel.RegisterUserViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- original size (half width) -->
+            <div class="card shadow-lg rounded-4 overflow-hidden border-0">
+                <!-- no border -->
+                <div class="card-body p-5 bg-light">
+                    <h2 class="mb-4 text-center text-dark" style="font-weight: 600;">Register</h2>
+                    <form asp-action="Register">
+                        <div asp-validation-summary="All" class="text-danger mb-4"></div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="UserName" class="form-control" placeholder="Username" />
+                            <label asp-for="UserName"></label>
+                            <span asp-validation-for="UserName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Password" />
+                            <label asp-for="Password"></label>
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" />
+                            <label asp-for="ConfirmPassword"></label>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input asp-for="Address" class="form-control" placeholder="Address" />
+                            <label asp-for="Address"></label>
+                            <span asp-validation-for="Address" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-warning btn-lg text-dark">Create Account</button>
+                            <a class="nav-link text-dark text-center" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    input.form-control:focus {
+        border-color: gray !important;
+        box-shadow: none !important;
+        outline: none;
+    }
+</style>
